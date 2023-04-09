@@ -35,6 +35,10 @@ app.delete("/short/:shortName", (req:Request, res: Response)=>{
 
 })
 
+app.post("/qrcode", (req:Request, res: Response)=>{
+
+})
+
 
 
 app.get("/analytics", (req:Request, res: Response)=>{
