@@ -9,6 +9,7 @@ export async function mongoConfig() {
   if (!mongoUrl) {
     throw new Error("MongoDB URL is not defined");
   }
+  mongoose.set({strictQuery: true})
   await mongoose.connect(mongoUrl);
 
   const db = mongoose.connection;
