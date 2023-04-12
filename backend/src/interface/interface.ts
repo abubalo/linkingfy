@@ -6,6 +6,11 @@ export interface IUser {
     password: string;
   }
 
+  export interface IUrl{
+    originalUrl: string;
+    shortUrl: string;
+    userId: string;
+  }
 
   export interface IUserDoc extends IUser {
     _id: string;
