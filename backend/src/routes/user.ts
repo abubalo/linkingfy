@@ -4,9 +4,7 @@ import {
   loginUser,
   updateUser,
   deleteUser,
-  analytics,
 } from "../controllers/userControllers";
-import jwt, { JwtPayload } from "jsonwebtoken";
 
 
 const router = express.Router();
@@ -22,23 +20,14 @@ interface User {
 router.post("/register", register);
 
 // Log in a user
-router.get("/login", (req: Request, res: Response) => {
-  // Your here
-});
+router.get("/login", loginUser);
 
 // Edit a user's details
-router.put("/edit", (req: Request, res: Response) => {
-  // Your here
-});
+router.put("/update", updateUser);
 
 // Delete a user's account
-router.delete("/delete", (req: Request, res: Response) => {
-  // Your here
-});
+router.delete("/delete", deleteUser);
 
-router.get("/analytics", (req: Request, res: Response) => {
-  // Your here
-});
 
 const userRouter = router;
 
