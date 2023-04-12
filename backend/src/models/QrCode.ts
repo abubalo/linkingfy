@@ -16,6 +16,6 @@ const QrcodeShema: Schema<IQrCode> = new mongoose.Schema({
   userId: { type: mongoose.Schema.Types.ObjectId, required: true }
 });
 
-const Qrcode : Model<IQrCode> = mongoose.model<IQrCode>('QrCode', QrcodeShema);
+const Qrcode : Model<IQrCode> =  mongoose.models?.Qrcode || mongoose.model<IQrCode>('QrCode', QrcodeShema);
 
 export default Qrcode;

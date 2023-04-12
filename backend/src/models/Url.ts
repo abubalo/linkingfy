@@ -16,6 +16,6 @@ const urlSchema: Schema<IUrl> = new mongoose.Schema({
   userId: { type: mongoose.Schema.Types.ObjectId, required: true }
 });
 
-const Url: Model<IUrl> = mongoose.model<IUrl>('Url', urlSchema);
+const Url: Model<IUrl> = mongoose.models?.Url || mongoose.model<IUrl>('Url', urlSchema);
 
 export default Url;
