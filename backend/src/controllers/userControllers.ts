@@ -8,22 +8,22 @@ import { IUser, IUserDoc, IVerifyToken } from "../interface/interface";
 const SALT_ROUNDS = 10;
 
 export const register = async (req: Request<IUser>, res: Response) => {
-  const { fullname, email, phone, password } = req.body;
+  const { fullname, email, password } = req.body;
 
   try {
+    
     const existingUser = await User.findOne({ email });
 
     if (existingUser) {
       return res.status(409).json({ error: "User already exists" });
     }
 
-    const salt = bcrypt.getSaltSync(SALT_ROUNDS);
+    const salt = bcrypt.genSaltSync(SALT_ROUNDS);
     const hashedPassword = bcrypt.hashSync(password, salt);
 
     const newUser = await User.create({
       fullname,
       email,
-      phone,
       password: hashedPassword,
     });
 
@@ -32,8 +32,6 @@ export const register = async (req: Request<IUser>, res: Response) => {
     res.status(500).json({ error: "Internal server error" });
   }
 };
-
-
 
 export const loginUser = async (req: Request, res: Response) => {
   try {
@@ -78,34 +76,34 @@ export const updateUser = async (req: Request, res: Response) => {
     const decodedToken: IVerifyToken = await verifyToken(req);
     const userId = decodedToken;
 
-    const { fullname, email, phone } = req.body;
+    const { fullname, email } = req.body;
     const user = await User.findByIdAndUpdate(
       userId,
-      { fullname, email, phone },
+      { fullname, email},
       { new: true }
     );
 
     return res.status(200).json(user);
   } catch (error) {
+    console.log(error.message);
     return res.status(400).json({ message: error });
   }
 };
 
-export const deleteUser = async (req: Request<{token: string}>, res: Response) => {
-    const decodedToken: IVerifyToken = await verifyToken(req);
-    const userId = decodedToken;
-  
-    try {
-      const user = await User.findByIdAndDelete(userId);
-  
-      if (!user) {
-        return res.status(404).json("User not found");
-      }
-    } catch (error) {
-      return res.status(500).json({ message: error });
+export const deleteUser = async (
+  req: Request<{ token: string }>,
+  res: Response
+) => {
+  const decodedToken: IVerifyToken = await verifyToken(req);
+  const userId = decodedToken;
+
+  try {
+    const user = await User.findByIdAndDelete(userId);
+
+    if (!user) {
+      return res.status(404).json("User not found");
     }
-  };
-  
-export const analytics = async (req: Request, res: Response) => {
-  res.json("");
+  } catch (error) {
+    return res.status(500).json({ message: error });
+  }
 };
