@@ -1,7 +1,7 @@
 # Short.ly
 
 ## Demo
-![short](./client/src/assets/demo-cover.png)
+![image](./client/src/assets/demo-cover.png)
 
 ## Description
 
