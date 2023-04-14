@@ -1,6 +1,7 @@
-# Shortly
+# Short.ly
 
-![Shortly](https://example.com/demo.gif)
+<!-- ## Demo -->
+![short.ly](./client/src/assets/demo-cover.png)
 
 ## Description
 
@@ -15,11 +16,54 @@ This is a full-stack URL shortener web application built with Node.js, Express, 
 - Rate limiting to prevent abuse
 - Custom error pages
 
-## Demo
+
+### Backend file structure
+
+```
+📁 server/
+├── 📁 src/
+│   ├── 📁 config/
+│   │   └── 📄 db.ts
+│   ├── 📁 controllers/
+│   │   ├── 📄 urlController.ts
+│   │   └── 📄 userController.ts
+│   │   └── 📄 qrcodeController.ts
+│   ├── 📁 interface/
+│   │   └── 📄 interface.ts
+│   ├── 📁 middleware/
+│   │   ├── 📄 auth.ts
+│   │   └── 📄 download.ts
+│   ├── 📁 models/
+│   │   ├── 📄 url.ts
+│   │   └── 📄 user.ts
+│   │   └── 📄 qrcode.ts
+│   ├── 📁 routes/
+│   │   ├── 📄 url.ts
+│   │   └── 📄 user.ts
+│   │   └── 📄 qrcode.ts
+│   ├── 📁 services/
+│   │   └── 📄 userService.ts
+│   │   └── 📄 qrcodeService.ts
+│   ├── 📁 utils/
+│   │   ├── 📄 logger.ts
+│   │   └── 📄errorHandlers.ts  
+│   ├── 📁 test/
+│   │   ├── 📄 urlTest.test.ts
+│   │   └── ... 
+│   └── 📄 index.ts.ts
+├── 📄 .env
+├── 📄 package.json
+└── 📄 tsconfig.json
+
+
+
+
+```
+<!-- ## Demo
 
 <div align="center">  
 <img src="./assets/react.svg" alt="shorly">
-</div>
+</div> -->
 
 ## Installation
 
@@ -60,4 +104,4 @@ This project was inspired by Bitly and built with the help of the following libr
 
 # Author
 
-[Abubakar Balogun]("https://github.com/abubalo")
+[Abubakar Balogun](https://github.com/abubalo)
