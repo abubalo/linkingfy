@@ -1,6 +1,6 @@
 # Short.ly
 
-<!-- ## Demo -->
+## Demo
 ![short.ly](./client/src/assets/demo-cover.png)
 
 ## Description
