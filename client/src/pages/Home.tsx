@@ -1,8 +1,8 @@
 const Home = () => {
   return (
-    <div className="h-screen bg-gradient flex flex-col justify-center items-center">
+    <div className="flex flex-col items-center justify-center h-screen bg-gradient">
       <div className="space-y-12">
-        <div className="w-full flex flex-col text-center text-white space-y-3">
+        <div className="flex flex-col w-full space-y-3 text-center text-white">
           <h1 className="text-5xl font-bold">
             Generate a custom URL on the go!
           </h1>
@@ -13,10 +13,10 @@ const Home = () => {
           </p>
         </div>
         <div className="space-y-3 text-white">
-          <label htmlFor="" className="w-full block text-center ">
+          <label htmlFor="" className="block w-full text-center ">
             Paste your long url and get a custom one.
           </label>
-          <div className="w-1/2 mx-auto flex justify-between items-center gap-1 bg-white rounded-md overflow-hidden">
+          <div className="flex items-center justify-between w-1/2 gap-1 mx-auto overflow-hidden bg-white rounded-md">
             <input
               type="text"
               name="originalLink"
