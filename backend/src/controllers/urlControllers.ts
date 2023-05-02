@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
 import Url from "../models/Url";
-import verifyToken from "../utils/auth";
+import verifyToken from "../middleware/auth";
 import { IVerifyToken } from "../interface/interface";
+import verifyUserId from "../middleware/verifyUserId";
 
 export const generate = async (req: Request, res: Response) => {
   const { originalUrl, shortUrl, userId } = req.body;
@@ -47,7 +48,7 @@ export const visitingUrl = async (req: Request, res: Response) => {
   try {
     const url = await Url.findOne({ shortUrl });
     if (!url) {
-      return res.status(404).json({ error: "URL not found" });
+      return res.status(404).json({ error: "tyURL not found" });
     }
 
     const originalUrl = url.originalUrl;
@@ -60,12 +61,13 @@ export const visitingUrl = async (req: Request, res: Response) => {
 };
 
 export const updateUrl = async (req: Request, res: Response) => {
-  const userIdToken: IVerifyToken = await verifyToken(req);
+  const isUserExists = await verifyUserId(req);
 
-  if (userIdToken) {
+  const { id, originalUrl, newUrl, userId } = req.body;
+  
+  if (isUserExists) {
     try {
-      const { _id, originalUrl, newUrl, userId } = req.body;
-      const url = await Url.findOne({ _id: _id, userId: userIdToken });
+      const url = await Url.findOne({ _id: id, });
 
       if (url) {
         (url.originalUrl = originalUrl),
