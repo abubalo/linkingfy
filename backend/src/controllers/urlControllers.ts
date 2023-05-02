@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import Url from "../models/Url";
 import verifyToken from "../middleware/auth";
-import { IVerifyToken } from "../interface/interface";
+import { IVerifyToken } from "../types/interface";
 import verifyUserId from "../middleware/verifyUserId";
 
 export const generate = async (req: Request, res: Response) => {
@@ -61,11 +61,11 @@ export const visitingUrl = async (req: Request, res: Response) => {
 };
 
 export const updateUrl = async (req: Request, res: Response) => {
-  const isUserExists = await verifyUserId(req);
+  // const isUserExists = await verifyUserId(req);
 
   const { id, originalUrl, newUrl, userId } = req.body;
   
-  if (isUserExists) {
+ 
     try {
       const url = await Url.findOne({ _id: id, });
 
@@ -81,7 +81,6 @@ export const updateUrl = async (req: Request, res: Response) => {
       console.log(error.message);
       res.status(500).json(error);
     }
-  }
 };
 
 export const deleteUrl = async (req: Request, res: Response) => {
