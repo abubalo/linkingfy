@@ -5,9 +5,11 @@ import Dashboard from "./pages/Dashboard";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import axios from "axios"
 function App() {
-  const [count, setCount] = useState(0);
 
+  axios.defaults.baseURL = "http://localhost:5000";
+  axios.defaults.withCredentials = true;
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
