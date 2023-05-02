@@ -20,7 +20,7 @@ interface User {
 router.post("/register", register);
 
 // Log in a user
-router.get("/login", loginUser);
+router.post("/login", loginUser);
 
 // Edit a user's details
 router.put("/update", updateUser);
