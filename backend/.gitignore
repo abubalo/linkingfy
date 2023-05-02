@@ -1,4 +1,4 @@
 .env
 *.doc
 node_modules/
-
+yarn-error.lock
