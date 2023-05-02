@@ -1,11 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-
 type Props = {};
 
 const Signup = (props: Props) => {
-  
   return (
     <main className="flex flex-col items-center justify-center w-full h-screen bg-gradient">
       <form
@@ -17,27 +15,17 @@ const Signup = (props: Props) => {
         </h1>
         <div className="flex flex-col space-y-2">
           <label htmlFor="">Fullname:</label>
-          <input
-            type="text"
-            name="fullname"
-            placeholder="John Doe"
-            className=""
-          />
+          <input type="text" placeholder="John Doe" className=""/>
           <small className={`text-red-500`}>error</small>
         </div>
         <div className="flex flex-col space-y-2">
           <label htmlFor="">Email:</label>
-          <input
-            type="email"
-            name="email"
-            placeholder="johndoe@gmail.com"
-            className=""
-          />
+          <input type="email" placeholder="johndoe@gmail.com" className=""/>
           <small className={`text-red-500`}>error</small>
         </div>
         <div className="flex flex-col space-y-2">
           <label htmlFor="">Password:</label>
-          <input type="password" name="password" className="" />
+          <input type="password" className=""/>
           <small className={`text-red-500`}>error</small>
         </div>
         <div>
