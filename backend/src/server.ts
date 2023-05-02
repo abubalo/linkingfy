@@ -1,6 +1,5 @@
-import express, {Request, Response} from "express";
+import express from "express";
 import cors from "cors";
-import bodyParser from "body-parser";
 import cookieParser from "cookie-parser"
 import { mongoConfig } from "./config/db";
 
@@ -17,15 +16,12 @@ const port = process.env.PORT || 6000;
 const app = express();
 app.use(express.json());
 app.use(cookieParser())
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 
 const whiteList = ["http://localhost:3000", "http://localhost:5173"];
 app.use(cors({ Credential: true, origin: whiteList }));
 
-// app.use("/", (req:Request, res:Response, next)=>{
-//   res.redirect("https://en.wikipedia.org/wiki/Query_string")
-//   next()
-// })
+
 // user routes
 app.use("/user", userRouter);
 
@@ -33,7 +29,6 @@ app.use("/user", userRouter);
 app.use("/url", urlRouter);
 
 // Qrcode routes
-
 app.use("/qrcode", qrCodeRouter);
 
 // Get specific url
