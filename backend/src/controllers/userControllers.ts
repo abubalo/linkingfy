@@ -2,8 +2,8 @@ import { Request, Response } from "express";
 import bcrypt from "bcrypt";
 import Jwt from "jsonwebtoken";
 import User from "../models/User";
-import verifyToken from "../utils/auth";
-import { IUser, IUserDoc, IVerifyToken } from "../interface/interface";
+import verifyToken from "../middleware/auth";
+import { IUser, IUserDoc, IVerifyToken } from "../types/interface";
 
 const SALT_ROUNDS = 10;
 
