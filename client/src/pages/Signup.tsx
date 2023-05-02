@@ -1,28 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FormikValues, useFormik } from "formik";
-import * as Yup from "yup";
+
 
 type Props = {};
 
 const Signup = (props: Props) => {
-  const formik = useFormik({
-    initialValues: {
-      fullname: "",
-      email: "",
-      password: ""
-    },
-
-    validationSchema: Object({
-      fullname: Yup.string().required("Full name is required"),
-      email: Yup.string().email("Invliad email").required("Full name is required"),
-      password: Yup.string().required("Please provide password")
-    }),
-
-    onSubmit: (values: FormikValues)=>{
-
-    }
-  });
+  
   return (
     <main className="flex flex-col items-center justify-center w-full h-screen bg-gradient">
       <form
