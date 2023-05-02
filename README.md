@@ -17,48 +17,6 @@ This is a full-stack URL shortener web application built with Node.js, Express, 
 - Custom error pages
 
 
-### Backend file structure
-
-```
-📁 server/
-├── 📁 src/
-│   ├── 📁 config/
-│   │   └── 📄 db.ts
-│   ├── 📁 controllers/
-│   │   ├── 📄 urlController.ts
-│   │   └── 📄 userController.ts
-│   │   └── 📄 qrcodeController.ts
-│   ├── 📁 interface/
-│   │   └── 📄 interface.ts
-│   ├── 📁 middleware/
-│   │   ├── 📄 auth.ts
-│   │   └── 📄 download.ts
-│   ├── 📁 models/
-│   │   ├── 📄 url.ts
-│   │   └── 📄 user.ts
-│   │   └── 📄 qrcode.ts
-│   ├── 📁 routes/
-│   │   ├── 📄 url.ts
-│   │   └── 📄 user.ts
-│   │   └── 📄 qrcode.ts
-│   ├── 📁 services/
-│   │   └── 📄 userService.ts
-│   │   └── 📄 qrcodeService.ts
-│   ├── 📁 utils/
-│   │   ├── 📄 logger.ts
-│   │   └── 📄errorHandlers.ts  
-│   ├── 📁 test/
-│   │   ├── 📄 urlTest.test.ts
-│   │   └── ... 
-│   └── 📄 index.ts.ts
-├── 📄 .env
-├── 📄 package.json
-└── 📄 tsconfig.json
-
-
-
-
-```
 <!-- ## Demo
 
 <div align="center">  
@@ -80,8 +38,7 @@ To view analytics for a shortened URL, navigate to the URL details page by click
 
 To manage your URLs and view analytics, log in to your account and navigate to the user dashboard. Here you can view all your shortened URLs, search and filter them, and view detailed analytics for each one.
 
-
-## Acknowledgements
+## Acknowledgments
 
 This project was inspired by Bitly and built with the help of the following libraries and tools:
 
@@ -102,6 +59,3 @@ This project was inspired by Bitly and built with the help of the following libr
 
 [MIT](./LICENSE)
 
-# Author
-
-[Abubakar Balogun](https://github.com/abubalo)
