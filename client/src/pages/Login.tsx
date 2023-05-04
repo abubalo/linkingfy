@@ -4,13 +4,14 @@ import { useFormik, FormikValues } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { AnimatePresence, motion } from "framer-motion";
+import Loader from "../components/Loader";
 
 type Props = {};
 
 const Login = (props: Props) => {
   const [userError, setUserError] = useState<string>("");
-  const [emailPassword, setEmailPassword] = useState<string>("");
   const [redirect, setRedirect] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false)
 
   const formik = useFormik({
     initialValues: {
@@ -25,6 +26,7 @@ const Login = (props: Props) => {
 
     onSubmit: async (values: FormikValues) => {
       try {
+        setLoading(true)
         await axios.post("/user/login", values);
         // Redirect user if there are no validation errors
         setRedirect(true);
@@ -36,8 +38,10 @@ const Login = (props: Props) => {
         if (error.response && error.response.status === 401) {
           setUserError("Invalid email or password");
         }
+        setUserError(error.response.data)
         console.log(error.message);
       }
+      setLoading(false)
     },
   });
 
@@ -55,7 +59,7 @@ const Login = (props: Props) => {
           action=""
           className="w-[90%] mx-auto space-y-3 bg-white lg:w-1/3 p-4 rounded-md transition-all duration-75 ease-linear"
         >
-          <>
+         
             <h1 className="text-2xl font-semibold text-center">
               Welcome back!
             </h1>
@@ -129,7 +133,7 @@ const Login = (props: Props) => {
             </div>
             <div>
               <button type="submit" className="">
-                Login
+                {loading ? <Loader /> : "Login"}
               </button>
             </div>
             <div>
@@ -140,7 +144,6 @@ const Login = (props: Props) => {
                 </Link>{" "}
               </small>
             </div>
-          </>
         </motion.form>
       </main>
     </AnimatePresence>
