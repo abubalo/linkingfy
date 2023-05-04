@@ -1,4 +1,13 @@
+import { useState } from "react";
+import axios from "axios"
+
+
 const Home = () => {
+  const [link, setLink] = useState<string>("")
+
+  function handleLinkShorter(){
+    axios.post("/url/generate", {link})
+  }
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-gradient">
       <div className="space-y-12">
@@ -18,13 +27,16 @@ const Home = () => {
           </label>
           <div className="flex items-center justify-between w-1/2 gap-1 mx-auto overflow-hidden bg-white rounded-md">
             <input
-              type="text"
-              name="originalLink"
-              placeholder="https://www.theladders.com/career-advice/the-problem-with-habits"
-              className="w-full px-6 py-4 focus:outline-none focus-within:"
+              type="search"
+              name="link"
+              value={link}
+              placeholder="https://www.theladders.com/ten-mental-health-fitness"
+              className="w-full px-6 py-4 bg-transparent focus:outline-none text-black"
+              autoFocus={true}
+              onChange={(e)=> setLink(e.target.value)}
             />
             <button className="font-semibold bg-gradient px-6 py-4 border-[5px] border-white text--white rounded-lg">
-              Generate
+              Try&nbsp;it
             </button>
           </div>
         </div>
