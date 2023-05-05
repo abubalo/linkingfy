@@ -19,7 +19,7 @@ app.use(cookieParser())
 app.use(express.urlencoded({ extended: true }));
 
 const whiteList = ["http://localhost:3000", "http://localhost:5173"];
-app.use(cors({ Credential: true, origin: whiteList }));
+app.use(cors({ credentials: true, origin: whiteList }));
 
 
 // user routes
