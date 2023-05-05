@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import { Link, Navigate, redirect } from "react-router-dom";
-import { FormikValues, useFormik, ErrorMessage } from "formik";
+import { FormikValues, useFormik, ErrorMessage, FormikErrors } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { AnimatePresence, motion } from "framer-motion";
-
-
+import Loader from "../components/Loader";
 
 const Signup = () => {
-  const [redirect, setRediect] = useState<boolean>(false)
-  const formik = useFormik({
+  const [redirect, setRediect] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const formik: any = useFormik({
     initialValues: {
       fullname: "",
       email: "",
@@ -29,9 +30,10 @@ const Signup = () => {
       { setSubmitting, setErrors, setStatus }
     ) => {
       try {
+        setLoading(true);
         await axios.post("/user/register", values);
         // Redirect to dashbord if successfully signed up
-       setRediect(true)
+        setRediect(true);
       } catch (error: any) {
         // Check if the user alrady exists
         if (error.response && error.response.status === 409) {
@@ -40,23 +42,21 @@ const Signup = () => {
           });
         }
         console.log(error);
+        setLoading(false);
       }
     },
   });
-
-  if(redirect){
-    return <Navigate to="/dashboard"/>;
+  if (redirect) {
+    return <Navigate to="/dashboard" />;
   }
   console.log(formik.errors.email);
   return (
     <AnimatePresence>
-      <main
-        className="flex flex-col items-center justify-center w-full h-screen bg-gradient"
-      >
+      <main className="flex flex-col items-center justify-center w-full h-screen bg-gradient">
         <motion.form
-          initial={{scale:0.98}}
-          animate={{scale: 1}}
-          transition={{duration: 0.5, delay: 0.25, ease: "linear"}}
+          initial={{ scale: 0.98 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 0.5, delay: 0.25, ease: "linear" }}
           onSubmit={formik.handleSubmit}
           action=""
           className="w-[90%] mx-auto space-y-3 bg-white lg:w-1/3 p-4 rounded-md"
@@ -134,7 +134,7 @@ const Signup = () => {
           </div>
           <div>
             <button type="submit" className="">
-              Sign up
+              {loading ? <Loader /> : "Sign up"}
             </button>
           </div>
           <div>
