@@ -11,7 +11,6 @@ export const register = async (req: Request<IUser>, res: Response) => {
   const { fullname, email, password } = req.body;
 
   try {
-    
     const existingUser = await User.findOne({ email });
 
     if (existingUser) {
@@ -79,7 +78,7 @@ export const updateUser = async (req: Request, res: Response) => {
     const { fullname, email } = req.body;
     const user = await User.findByIdAndUpdate(
       userId,
-      { fullname, email},
+      { fullname, email },
       { new: true }
     );
 
